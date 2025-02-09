@@ -1,5 +1,3 @@
-local HoT_Tools = LibStub("HoT_Tools")
-
 --Widget Handlers
 local OPTION_TABLE_NONE = {};
 BOSS_DEBUFF_SIZE_INCREASE = 18;
@@ -390,7 +388,7 @@ function CompactUnitFrame_UpdateHealthColor(frame)
         else 
             --Try to color it by class.
             local localizedClass, englishClass = UnitClass(frame.unit);
-            local classColor = HoT_Tools.CLASS_COLORS[HoT_Tools:check_subclass_by_aura(UnitName(frame.unit))];
+            local classColor = RAID_CLASS_COLORS[englishClass];
             --debug
             --classColor = RAID_CLASS_COLORS["PRIEST"];
             if ( (frame.optionTable.allowClassColorsForNPCs or UnitIsPlayer(frame.unit)) and classColor and frame.optionTable.useClassColors ) then

@@ -17,13 +17,16 @@ local function SetAuraInfo(canApplyAura, appliesOnlyYourself)
 end
 
 local UNIT_CAN_APPLY_AURAS = {
-    ["TIMEWALKER"] =
+    ["DEATHKNIGHT"] =
         {
             [GetSpellInfo(48265)] = SetAuraInfo(true, true),  -- Unholy Presence
             [GetSpellInfo(48263)] = SetAuraInfo(true, true),  -- Frost Presence
             [GetSpellInfo(48266)] = SetAuraInfo(true, true),  -- Blood Presence
             [GetSpellInfo(45529)] = SetAuraInfo(true, true),  -- Blood Tap
             [GetSpellInfo(49016)] = SetAuraInfo(true, false), -- Hysteria
+        },
+    ["DRUID"] =
+        {
             [GetSpellInfo(29166)] = SetAuraInfo(true, false), -- Innervate
             [GetSpellInfo(9634)]  = SetAuraInfo(true, true),  -- Dire Bear Form
             [GetSpellInfo(768)]   = SetAuraInfo(true, true),  -- Cat Form
@@ -38,10 +41,16 @@ local UNIT_CAN_APPLY_AURAS = {
             [GetSpellInfo(53312)] = SetAuraInfo(true, true),  -- Nature's Grasp
             [GetSpellInfo(22842)] = SetAuraInfo(true, true),  -- Frenzied Regeneration
             [GetSpellInfo(2893)]  = SetAuraInfo(true, false), -- Abolish Poison
+        },
+    ["HUNTER"] =
+        {
             [GetSpellInfo(5384)]  = SetAuraInfo(true, true),  -- Feign Death
             [GetSpellInfo(3045)]  = SetAuraInfo(true, true),  -- Rapid Fire
             [GetSpellInfo(53480)] = SetAuraInfo(true, false), -- Roar of Sacrifice
             [GetSpellInfo(53271)] = SetAuraInfo(true, false), -- Master's Call
+        },
+    ["MAGE"] =
+        {
             [GetSpellInfo(43039)] = SetAuraInfo(true, true),  -- Ice Barrier
             [GetSpellInfo(45438)] = SetAuraInfo(true, true),  -- Ice Block
             [GetSpellInfo(42995)] = SetAuraInfo(true, false), -- Arcane Intellect
@@ -52,7 +61,7 @@ local UNIT_CAN_APPLY_AURAS = {
             [GetSpellInfo(61024)] = SetAuraInfo(true, false), -- Dalaran Intellect
             [GetSpellInfo(43012)] = SetAuraInfo(true, true),  -- Frost Ward
             [GetSpellInfo(43008)] = SetAuraInfo(true, true),  -- Ice Armor
-            [GetSpellInfo(7301)]  = SetAuraInfo(true, true),  -- Frost Armor
+            --[GetSpellInfo(7301)]  = SetAuraInfo(true, true),  -- Frost Armor
             [GetSpellInfo(12472)] = SetAuraInfo(true, true),  -- Icy Veins
             [GetSpellInfo(43010)] = SetAuraInfo(true, true),  -- Fire Ward
             [GetSpellInfo(43046)] = SetAuraInfo(true, true),  -- Molten Armor
@@ -64,6 +73,9 @@ local UNIT_CAN_APPLY_AURAS = {
             [GetSpellInfo(12043)] = SetAuraInfo(true, true),  -- Presence of Mind
             [GetSpellInfo(12042)] = SetAuraInfo(true, true),  -- Arcane Power
             [GetSpellInfo(31579)] = SetAuraInfo(true, true),  -- Arcane Empowerment
+        },
+    ["PALADIN"] =
+        {
             [GetSpellInfo(53601)] = SetAuraInfo(true, false), -- Sacred Shield
             [GetSpellInfo(53563)] = SetAuraInfo(true, false), -- Beacon of Light
             [GetSpellInfo(6940)]  = SetAuraInfo(true, false), -- Hand of Sacrifice
@@ -95,6 +107,9 @@ local UNIT_CAN_APPLY_AURAS = {
             [GetSpellInfo(54203)] = SetAuraInfo(true, false), -- Sheath of Light
             [GetSpellInfo(20053)] = SetAuraInfo(true, true),  -- Vengeance
             [GetSpellInfo(59578)] = SetAuraInfo(true, true),  -- The Art of War
+        },
+    ["PRIEST"] =
+        {
             [GetSpellInfo(48111)] = SetAuraInfo(true, false), -- Prayer of Mending
             [GetSpellInfo(33206)] = SetAuraInfo(true, false), -- Pain Suppression
             [GetSpellInfo(48068)] = SetAuraInfo(true, false), -- Renew
@@ -129,6 +144,9 @@ local UNIT_CAN_APPLY_AURAS = {
             [GetSpellInfo(63734)] = SetAuraInfo(true, true),  -- Serendipity
             [GetSpellInfo(65081)] = SetAuraInfo(true, false), -- Body and Soul
             [GetSpellInfo(63944)] = SetAuraInfo(true, false), -- Renewed Hope
+        },
+    ["ROGUE"] =
+        {
             [GetSpellInfo(1784)]  = SetAuraInfo(true, true),  -- Stealth
             [GetSpellInfo(31665)] = SetAuraInfo(true, true),  -- Master of Subtlety
             [GetSpellInfo(26669)] = SetAuraInfo(true, true),  -- Evasion
@@ -140,12 +158,19 @@ local UNIT_CAN_APPLY_AURAS = {
             [GetSpellInfo(51713)] = SetAuraInfo(true, true),  -- Shadow dance
             [GetSpellInfo(14177)] = SetAuraInfo(true, true),  -- Cold Blood
             [GetSpellInfo(57934)] = SetAuraInfo(true, false), -- Tricks of the Trade
+        },
+    ["SHAMAN"] =
+        {
             [GetSpellInfo(49284)] = SetAuraInfo(true, false), -- Earth Shield
             [GetSpellInfo(8515)]  = SetAuraInfo(true, false), -- Windfury Totem
             [GetSpellInfo(8177)]  = SetAuraInfo(true, false), -- Grounding Totem
             [GetSpellInfo(32182)] = SetAuraInfo(true, false), -- Heroism
             [GetSpellInfo(2825)]  = SetAuraInfo(true, false), -- Bloodlust
             [GetSpellInfo(61301)] = SetAuraInfo(true, false), -- Riptide
+        },
+    ["WARLOCK"] = {    },
+    ["WARRIOR"] =
+        {
             [GetSpellInfo(2687)]  = SetAuraInfo(true, true),  -- Bloodrage
             [GetSpellInfo(18499)] = SetAuraInfo(true, true),  -- Berserker Rage
             [GetSpellInfo(12328)] = SetAuraInfo(true, true),  -- Sweeping Strikes
@@ -165,6 +190,7 @@ local UNIT_CAN_APPLY_AURAS = {
             [GetSpellInfo(65156)] = SetAuraInfo(true, true),  -- Juggernaut
             [GetSpellInfo(3411)]  = SetAuraInfo(true, false), -- Intervene
         },
+		 ["TIMEWALKER"] = {    },
 };
 lib.UNIT_CAN_APPLY_AURAS = UNIT_CAN_APPLY_AURAS;
 
