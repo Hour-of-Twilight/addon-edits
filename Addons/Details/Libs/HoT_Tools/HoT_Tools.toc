@@ -1,0 +1,5 @@
+## Interface: 70200
+## Title: HoT_Tools
+## Notes: Library for utility functions to provide Hour of Twilight Compatability
+
+HoT_Tools.xml
