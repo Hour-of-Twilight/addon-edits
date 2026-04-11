@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: HoT UI Bridge
+## Notes: Bridges Hour of Twilight custom itemlevel and upgrade systems into ElvUI and Bagnon.
+## Author: OpenAI
+## Version: 1.0
+## OptionalDeps: ElvUI, Bagnon
+HoT_UIBridge.lua
