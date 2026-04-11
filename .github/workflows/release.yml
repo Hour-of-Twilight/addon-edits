@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows
 
     steps:
       # 1. Check out the full repo contents
@@ -27,18 +27,6 @@ jobs:
             ElvUI_Enhanced \
             ElvUI_OptionsUI \
             ElvUI_ToxiUI
-
-          # Details Suite
-          zip -r Details.zip \
-            Details \
-            Details_3DModelsPaths \
-            Details_ChartViewer \
-            Details_DataStorage \
-            Details_DeathGraphs \
-            Details_EncounterDetails \
-            Details_SunderCount \
-            Details_TimeLine \
-            Details_TinyThreat
 
           # Bagnon Suite
           zip -r Bagnon.zip \
