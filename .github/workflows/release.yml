@@ -2,6 +2,9 @@ name: Create Release Zips
 
 # Triggers when you push a tag like "v1.0.0"
 on:
+  push:
+    tags:
+      - "v*"
  workflow_dispatch:
 
 jobs:
