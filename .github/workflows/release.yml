@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows
+    runs-on: ubuntu-latest
 
     steps:
       # 1. Check out the full repo contents
