@@ -1,0 +1,71 @@
+name: Create Release Zips
+
+# Triggers when you push a tag like "v1.0.0"
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out the full repo contents
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Build all the zip files
+      - name: Create addon zips
+        run: |
+          # ElvUI Suite
+          zip -r ElvUI.zip \
+            ElvUI \
+            ElvUI_AddOnSkins \
+            ElvUI_CustomTags \
+            ElvUI_CustomTweaks \
+            ElvUI_Enhanced \
+            ElvUI_OptionsUI \
+            ElvUI_ToxiUI
+
+          # Details Suite
+          zip -r Details.zip \
+            Details \
+            Details_3DModelsPaths \
+            Details_ChartViewer \
+            Details_DataStorage \
+            Details_DeathGraphs \
+            Details_EncounterDetails \
+            Details_SunderCount \
+            Details_TimeLine \
+            Details_TinyThreat
+
+          # Bagnon Suite
+          zip -r Bagnon.zip \
+            Bagnon \
+            Bagnon_Config \
+            Bagnon_Forever \
+            Bagnon_GuildBank \
+            Bagnon_Tooltips
+
+          # Standalone addons
+          zip -r CompactRaidFrame.zip CompactRaidFrame
+          zip -r HoT_UIBridge.zip HoT_UIBridge
+          zip -r pw_unitframes.zip pw_unitframes
+
+      # 3. Create the GitHub Release and upload all zips as assets
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          # The tag name becomes the release name automatically (e.g. "v1.0.0")
+          # You can add release notes here, or leave blank
+          body: |
+            Automated release of addon packs for Hour of Twilight.
+            Download the zip(s) for the addons you want and extract them into your WoW Interface/AddOns/ folder.
+          files: |
+            ElvUI.zip
+            Details.zip
+            Bagnon.zip
+            CompactRaidFrame.zip
+            HoT_UIBridge.zip
+            pw_unitframes.zip
