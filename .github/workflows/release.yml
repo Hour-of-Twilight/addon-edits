@@ -39,7 +39,6 @@ jobs:
 
           # Standalone addons
           zip -r CompactRaidFrame.zip CompactRaidFrame
-          zip -r HoT_UIBridge.zip HoT_UIBridge
           zip -r pw_unitframes.zip pw_unitframes
 
       # 3. Create the GitHub Release and upload all zips as assets
@@ -56,5 +55,4 @@ jobs:
             Details.zip
             Bagnon.zip
             CompactRaidFrame.zip
-            HoT_UIBridge.zip
             pw_unitframes.zip
