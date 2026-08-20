@@ -25,7 +25,7 @@ jobs:
           RELEASE_TAG: ${{ github.ref_type == 'tag' && github.ref_name || format('dev-{0}', github.run_number) }}
         run: |
           mkdir -p dist
-          python3 .github/build-addons.py .github/addons.yml dist "$RELEASE_TAG"
+          python3 .github/workflows/build-addons.py .github/workflows/addons.yml dist "$RELEASE_TAG"
 
       - name: Show what was built
         run: ls -la dist && cat dist/addons.json
