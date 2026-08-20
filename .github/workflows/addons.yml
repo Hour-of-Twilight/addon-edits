@@ -1,0 +1,53 @@
+# Addon metadata for the release workflow. Adding an addon means adding a block here, not
+# editing the workflow.
+#
+#   id         stable key the launcher stores in installed-addons.json. Never rename it.
+#   name       shown in the launcher
+#   summary    one line, shown under the name
+#   website    optional, opens from the launcher's Website button
+#   mainFolder the folder that identifies this addon. Must be one of `folders`.
+#   folders    every folder that ships in the zip. Order does not matter.
+#   asset      optional, the zip file name. Defaults to "<mainFolder>.zip".
+
+addons:
+  - id: elvui
+    name: ElvUI
+    summary: Full UI replacement, tuned for Hour of Twilight.
+    website: https://github.com/Hour-of-Twilight/addon-edits
+    mainFolder: ElvUI
+    folders:
+      - ElvUI
+      - ElvUI_AddOnSkins
+      - ElvUI_CustomTags
+      - ElvUI_CustomTweaks
+      - ElvUI_Enhanced
+      - ElvUI_OptionsUI
+      - ElvUI_ToxiUI
+
+  - id: bagnon
+    name: Bagnon
+    summary: All your bags in one window.
+    website: https://github.com/Hour-of-Twilight/addon-edits
+    mainFolder: Bagnon
+    folders:
+      - Bagnon
+      - Bagnon_Config
+      - Bagnon_Forever
+      - Bagnon_GuildBank
+      - Bagnon_Tooltips
+
+  - id: compactraidframe
+    name: CompactRaidFrame
+    summary: Compact raid frames.
+    website: https://github.com/Hour-of-Twilight/addon-edits
+    mainFolder: CompactRaidFrame
+    folders:
+      - CompactRaidFrame
+
+  - id: pw_unitframes
+    name: pw_unitframes
+    summary: Lightweight unit frames.
+    website: https://github.com/Hour-of-Twilight/addon-edits
+    mainFolder: pw_unitframes
+    folders:
+      - pw_unitframes

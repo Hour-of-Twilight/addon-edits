@@ -12,47 +12,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Check out the full repo contents
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Build all the zip files
-      - name: Create addon zips
+      - name: Install PyYAML
+        run: python3 -m pip install --quiet pyyaml
+
+      # Builds one zip per entry in .github/addons.yml and writes addons.json alongside them.
+      # The launcher reads addons.json, so anything not listed there is invisible to players.
+      - name: Build addon zips and addons.json
+        env:
+          RELEASE_TAG: ${{ github.ref_type == 'tag' && github.ref_name || format('dev-{0}', github.run_number) }}
         run: |
-          # ElvUI Suite
-          zip -r ElvUI.zip \
-            ElvUI \
-            ElvUI_AddOnSkins \
-            ElvUI_CustomTags \
-            ElvUI_CustomTweaks \
-            ElvUI_Enhanced \
-            ElvUI_OptionsUI \
-            ElvUI_ToxiUI
+          mkdir -p dist
+          python3 .github/build-addons.py .github/addons.yml dist "$RELEASE_TAG"
 
-          # Bagnon Suite
-          zip -r Bagnon.zip \
-            Bagnon \
-            Bagnon_Config \
-            Bagnon_Forever \
-            Bagnon_GuildBank \
-            Bagnon_Tooltips
+      - name: Show what was built
+        run: ls -la dist && cat dist/addons.json
 
-          # Standalone addons
-          zip -r CompactRaidFrame.zip CompactRaidFrame
-          zip -r pw_unitframes.zip pw_unitframes
-
-      # 3. Create the GitHub Release and upload all zips as assets
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          # The tag name becomes the release name automatically (e.g. "v1.0.0")
-          # You can add release notes here, or leave blank
           body: |
             Automated release of addon packs for Hour of Twilight.
-            Download the zip(s) for the addons you want and extract them into your WoW Interface/AddOns/ folder.
+
+            The launcher picks these up on its own. To install by hand, download a zip and
+            extract it into your WoW Interface/AddOns/ folder.
           files: |
-            ElvUI.zip
-            Details.zip
-            Bagnon.zip
-            CompactRaidFrame.zip
-            pw_unitframes.zip
+            dist/*.zip
+            dist/addons.json
