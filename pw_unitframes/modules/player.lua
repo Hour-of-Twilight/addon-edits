@@ -16,9 +16,6 @@ local uconfig, src = config.player, config.media;
 local select = select
 
 local UnitClass = UnitClass
-local arg1, arg2 = LookupGlobalLevelCache(GetUnitName('player'))
-local get_unitclass = classIdToName[arg2]
-print(arg1)
 
 local __PlayerFrame_ToPlayerArt
 local __PlayerFrame_UpdatePvPStatus
@@ -76,7 +73,7 @@ function __PlayerFrame_ToPlayerArt(self)
 	if not uconfig.level then PlayerLevelText:SetAlpha(0) end
 	if not uconfig.petname then PetName:SetAlpha(0) end
 	-- style rune orbs:
-	if (get_unitclass == 'DEATHKNIGHT') then
+	if RuneFrame and HoT_SubClassFromUnit('player') == 'DEATHKNIGHT' then
 		RuneFrame:ClearAllPoints()
 		RuneFrame.anchor = addon.c_anchor(RuneFrame,'Runes',RuneFrame:GetName(),uconfig.runeanchor,140,40)
 		RuneFrame:SetScale(uconfig.runescale)

@@ -42,8 +42,8 @@ local ServerClassDisplayMap = {
     [8] = "Mage",
     [9] = "Warlock",
     [10] = "Druid",
-    [11] = "Timewalker",
-    [12] = "Warden",
+    [11] = "Druid",
+    [12] = "Timewalker",
     [13] = "Warden",
     [14] = "Historian",
     [15] = "Weaver",
@@ -64,9 +64,9 @@ local ServerClassTokenMap = {
     [8] = "MAGE",
     [9] = "WARLOCK",
     [10] = "DRUID",
-    [11] = "WARLOCK",     -- Timewalker
-    [12] = "WARRIOR",     -- Warden fallback
-    [13] = "WARRIOR",     -- Warden fallback
+    [11] = "DRUID",
+    [12] = "WARLOCK",     -- Timewalker
+    [13] = "WARRIOR",     -- Warden
     [14] = "PRIEST",      -- Historian fallback
     [15] = "MAGE",        -- Weaver fallback
     [16] = "ROGUE",       -- Watcher fallback
@@ -82,15 +82,12 @@ function E:GetServerClassInfo(unit)
     local displayName = localizedClass
     local subclassID
 
-    if LookupGlobalLevelCache then
-        local name = UnitName(unit)
-        if name and name ~= "" then
-            local _, cachedSubclassID = LookupGlobalLevelCache(name)
-            if cachedSubclassID ~= nil then
-                subclassID = tonumber(cachedSubclassID)
-                displayName = ServerClassDisplayMap[subclassID] or displayName
-                classToken = ServerClassTokenMap[subclassID] or classToken
-            end
+    if type(GetUnitSubclass) == "function" then
+        local cachedSubclassID = GetUnitSubclass(unit)
+        if cachedSubclassID ~= nil then
+            subclassID = tonumber(cachedSubclassID)
+            displayName = ServerClassDisplayMap[subclassID] or displayName
+            classToken = ServerClassTokenMap[subclassID] or classToken
         end
     end
 
@@ -124,11 +121,8 @@ function E:FormatUnitNameForCache(unit)
 end
 
 function E:GetCachedUnitItemLevel(unit)
-    local name = self:FormatUnitNameForCache(unit)
-    if not name or not IsItemLevelCached or not GetCachedItemLevel then return nil end
-    if IsItemLevelCached(name) then
-        return GetCachedItemLevel(name)
-    end
+    if type(GetUnitItemLevel) ~= "function" then return nil end
+    return GetUnitItemLevel(unit)
 end
 
 function E:GetServerClassTag(unit)
@@ -142,7 +136,7 @@ function E:GetServerClassTag(unit)
 end
 
 function E:IsServerClasslessClient()
-    return type(LookupGlobalLevelCache) == "function"
+    return type(GetUnitSubclass) == "function"
 end
 
 function E:RefreshMyServerClass()

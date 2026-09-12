@@ -1,28 +1,13 @@
 local E, L, V, P, G = unpack(select(2, ...)); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 
-local HoTNPLevelRequests = {}
-
-local function HoTNP_RequestLevelByName(name)
-	if not name or name == "" then return end
-	if HoTNPLevelRequests[name] then return end
-	if type(SendClientRequest) == "function" then
-		HoTNPLevelRequests[name] = true
-		SendClientRequest("HoverInjector", 1, name)
-	end
-end
-
 local function HoT_NameplateProgressionLevel(unit)
 	if not unit or not UnitExists(unit) then return nil end
 	if UnitIsPlayer(unit) then
-		local name = UnitName(unit)
-		if name and name ~= "" then
-			if type(LookupGlobalLevelCache) == "function" then
-				local level = LookupGlobalLevelCache(name)
-				if level then
-					return level
-				end
+		if type(GetUnitDungeonLevel) == "function" then
+			local level = GetUnitDungeonLevel(unit)
+			if level then
+				return level
 			end
-			HoTNP_RequestLevelByName(name)
 		end
 	end
 	return UnitLevel(unit)

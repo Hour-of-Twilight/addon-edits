@@ -4,7 +4,7 @@ local texture = addon.config.media.statusbar;
 
 
 classIdToName = {
-    [0] = "WARLOCK", -- Timewalker
+    [0]  = "WARLOCK",
     [1]  = "WARRIOR",
     [2]  = "PALADIN",
     [3]  = "HUNTER",
@@ -15,15 +15,14 @@ classIdToName = {
     [8]  = "MAGE",
     [9]  = "WARLOCK",
     [10] = "DRUID",
-    [11] = "Timewalker",
-    [12] = "Warden",
+    [11] = "DRUID",
+    [12] = "WARLOCK", -- Timewalker
     [13] = "WARRIOR", -- Warden
     [14] = "PRIEST", -- Historian
     [15] = "MAGE", -- Weaver
     [16] = "ROGUE", -- Watcher
     [17] = "HUNTER", -- Ranger
     [18] = "SHAMAN", -- Savage
-    [19] = "test3", 
 }
 
 function GetClassNameFromId(classId)
@@ -31,10 +30,9 @@ function GetClassNameFromId(classId)
 end
 
 function HoT_SubClassFromUnit(unit)
-	local name = UnitName(unit)
-        local arg1, arg2 = LookupGlobalLevelCache(name)
-	
-	return classIdToName[arg2] or "WARLOCK"
+	local subClass = GetUnitSubclass and GetUnitSubclass(unit)
+
+	return classIdToName[subClass] or "WARLOCK"
 end
 
 --[[
