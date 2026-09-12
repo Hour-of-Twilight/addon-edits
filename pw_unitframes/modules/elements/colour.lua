@@ -70,7 +70,7 @@ local hooksecurefunc = hooksecurefunc
 local nextframes = {
 	PlayerFrameTexture,TargetFrameTextureFrameTexture,TargetFrameToTTextureFrameTexture,
 	FocusFrameTextureFrameTexture,FocusFrameToTTextureFrameTexture,
-	PlayerFrameAlternateManaBarBorder,PetFrameTexture,
+	PetFrameTexture,
     Boss1TargetFrameTextureFrameTexture,Boss2TargetFrameTextureFrameTexture,
     Boss3TargetFrameTextureFrameTexture,Boss4TargetFrameTextureFrameTexture,
     Boss5TargetFrameTextureFrameTexture,

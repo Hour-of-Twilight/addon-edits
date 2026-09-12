@@ -64,8 +64,16 @@ function __PlayerFrame_ToPlayerArt(self)
 	PetName:SetShadowColor(0, 0, 0, 1)
 	PetName:SetShadowOffset(1, -1)
 	
-	PlayerFrameAlternateManaBar:ClearAllPoints()
-	PlayerFrameAlternateManaBar:SetPoint('BOTTOMLEFT', self, 'BOTTOMLEFT', 128, 23)
+	if PlayerFrameAlternateManaBar then
+		PlayerFrameAlternateManaBar:ClearAllPoints()
+		PlayerFrameAlternateManaBar:SetPoint('BOTTOMLEFT', self, 'BOTTOMLEFT', 128, 23)
+	end
+
+	if PlayerFrameFocusBar then
+		PlayerFrameFocusBar:ClearAllPoints()
+		PlayerFrameFocusBar:SetWidth(119)
+		PlayerFrameFocusBar:SetPoint('TOPLEFT', 106, -64)
+	end
 	
 	-- tweak player elements with config:
 	if not uconfig.name then PlayerName:SetAlpha(0) end
@@ -83,6 +91,16 @@ end
 -- /* FFA for player */
 function __PlayerFrame_UpdatePvPStatus()
 	PlayerPVPIcon:SetTexture('Interface\\TargetingFrame\\UI-PVP-FFA')
+end
+
+-- /* keep our art when the focus bar toggles the stock player frame texture */
+if PlayerFrameFocusBar then
+	local function restore_playerart()
+		addon.check_texture(PlayerFrameTexture, uconfig.elite and src.targetElite or src.targetFrame)
+	end
+
+	PlayerFrameFocusBar:HookScript('OnShow', restore_playerart)
+	PlayerFrameFocusBar:HookScript('OnHide', restore_playerart)
 end
 
 -- /* register module */
