@@ -7,7 +7,7 @@ local unpack = unpack
 --WoW API / Variables
 
 S:AddCallbackForAddon("Blizzard_TalentUI", "Skin_Blizzard_TalentUI", function()
-	return -- custom server talent UI is incompatible with stock ElvUI talent skin
+	do return end -- custom server talent UI is incompatible with stock ElvUI talent skin
 	if not E.private.skins.blizzard.enable or not E.private.skins.blizzard.talent then return end
 
 	PlayerTalentFrame:StripTextures(true)

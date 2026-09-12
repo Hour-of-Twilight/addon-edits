@@ -51,8 +51,6 @@ The following options are listed by priority. The first check that returns true 
     self.AdditionalPower = AdditionalPower
 --]]
 
-if(select(2, UnitClass('player')) ~= 'DRUID') then return end
-
 local _, ns = ...
 local oUF = ns.oUF
 
@@ -67,8 +65,8 @@ local UnitPowerType = UnitPowerType
 -- end block
 
 -- sourced from FrameXML/AlternatePowerBar.lua
-local ADDITIONAL_POWER_BAR_NAME = ADDITIONAL_POWER_BAR_NAME or 'MANA'
-local ADDITIONAL_POWER_BAR_INDEX = ADDITIONAL_POWER_BAR_INDEX or 0
+local ADDITIONAL_POWER_BAR_NAME = 'FOCUS'
+local ADDITIONAL_POWER_BAR_INDEX = 2
 
 local function UpdateColor(self, event, unit, powertype)
 	if(not (unit and unit == 'player') and powertype == ADDITIONAL_POWER_BAR_NAME) then return end
@@ -168,8 +166,8 @@ end
 local function ElementEnable(self)
 	local element = self.AdditionalPower
 
-	self:RegisterEvent('UNIT_MANA', Path)
-	self:RegisterEvent('UNIT_MAXMANA', Path)
+	self:RegisterEvent('UNIT_FOCUS', Path)
+	self:RegisterEvent('UNIT_MAXFOCUS', Path)
 
 	element:Show()
 
@@ -185,8 +183,8 @@ local function ElementEnable(self)
 end
 
 local function ElementDisable(self)
-	self:UnregisterEvent('UNIT_MAXMANA', Path)
-	self:UnregisterEvent('UNIT_MANA', Path)
+	self:UnregisterEvent('UNIT_MAXFOCUS', Path)
+	self:UnregisterEvent('UNIT_FOCUS', Path)
 
 	self.AdditionalPower:Hide()
 

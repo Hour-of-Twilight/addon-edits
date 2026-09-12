@@ -25,9 +25,14 @@ S:AddCallback("Skin_LFD", function()
 		S:Unhook(self, "OnShow")
 	end)
 
-	S:HandleCloseButton((LFDParentFrame:GetChildren()), LFDQueueFrame.backdrop)
+	local lfdCloseButton = LFDParentFrame:GetChildren()
+	if lfdCloseButton and lfdCloseButton.GetNormalTexture then
+		S:HandleCloseButton(lfdCloseButton, LFDQueueFrame.backdrop)
+	end
 
-	LFDParentFramePortrait:Kill()
+	if LFDParentFramePortrait then
+		LFDParentFramePortrait:Kill()
+	end
 
 	S:HandleCheckBox(LFDQueueFrameRoleButtonTank.checkButton)
 	LFDQueueFrameRoleButtonTank.checkButton:SetFrameLevel(LFDQueueFrameRoleButtonTank.checkButton:GetFrameLevel() + 2)
@@ -55,7 +60,10 @@ S:AddCallback("Skin_LFD", function()
 	S:HandleScrollBar(LFDQueueFrameSpecificListScrollFrameScrollBar)
 
 	S:HandleButton(LFDQueueFrameFindGroupButton)
-	S:HandleButton(LFDQueueFrameCancelButton)
+
+	if LFDQueueFrameCancelButton then
+		S:HandleButton(LFDQueueFrameCancelButton)
+	end
 
 	S:HandleButton(LFDQueueFramePartyBackfillBackfillButton)
 	S:HandleButton(LFDQueueFramePartyBackfillNoBackfillButton)
@@ -68,8 +76,10 @@ S:AddCallback("Skin_LFD", function()
 	LFDQueueFrameSpecificListScrollFrameScrollBar:Point("TOPLEFT", LFDQueueFrameSpecificListScrollFrame, "TOPRIGHT", 5, -17)
 	LFDQueueFrameSpecificListScrollFrameScrollBar:Point("BOTTOMLEFT", LFDQueueFrameSpecificListScrollFrame, "BOTTOMRIGHT", 5, 17)
 
-	LFDQueueFrameFindGroupButton:Point("BOTTOMLEFT", 19, 12)
-	LFDQueueFrameCancelButton:Point("BOTTOMRIGHT", -11, 12)
+	if LFDQueueFrameCancelButton then
+		LFDQueueFrameFindGroupButton:Point("BOTTOMLEFT", 19, 12)
+		LFDQueueFrameCancelButton:Point("BOTTOMRIGHT", -11, 12)
+	end
 
 	LFDQueueFrameTypeDropDown:Point("TOPLEFT", 152, -119)
 

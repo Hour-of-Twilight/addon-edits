@@ -7,6 +7,7 @@ local unpack = unpack
 --WoW API / Variables
 
 S:AddCallbackForAddon("Blizzard_GlyphUI", "Skin_Blizzard_GlyphUI", function()
+	do return end -- custom server talent UI replaced PlayerTalentFrame, the glyph skin has nothing to hook
 	if not E.private.skins.blizzard.enable or not E.private.skins.blizzard.talent then return end
 
 	if not PlayerTalentFrame then

@@ -338,7 +338,7 @@ function UF:PostUpdateAdditionalPower(_, MIN, MAX, event)
 			local powerValueText = powerValue:GetText()
 			local powerValueParent = powerValue:GetParent()
 			local powerTextPosition = db.power.position
-			local color = ElvUF.colors.power.MANA
+			local color = ElvUF.colors.power.FOCUS
 			color = E:RGBToHex(color[1], color[2], color[3])
 
 			--Attempt to remove |cFFXXXXXX color codes in order to determine if power text is really empty

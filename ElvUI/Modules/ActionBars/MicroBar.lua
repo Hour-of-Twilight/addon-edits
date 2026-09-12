@@ -5,6 +5,7 @@ local AB = E:GetModule("ActionBars")
 local _G = _G
 local unpack = unpack
 local gsub, match = string.gsub, string.match
+local tinsert = table.insert
 --WoW API / Variables
 local CreateFrame = CreateFrame
 local InCombatLockdown = InCombatLockdown
@@ -22,6 +23,10 @@ local MICRO_BUTTONS = {
 	"MainMenuMicroButton",
 	"HelpMicroButton"
 }
+
+if GemSocketMicroButton then
+	tinsert(MICRO_BUTTONS, 3, "GemSocketMicroButton")
+end
 
 local function onEnter(button)
 	if AB.db.microbar.mouseover then

@@ -17,6 +17,7 @@ S:AddCallback("Skin_Misc", function()
 	GameMenuFrameHeader:Point("TOP", 0, 7)
 
 	local menuButtons = {
+		gamemenuSettings,
 		GameMenuButtonOptions,
 		GameMenuButtonSoundOptions,
 		GameMenuButtonUIOptions,

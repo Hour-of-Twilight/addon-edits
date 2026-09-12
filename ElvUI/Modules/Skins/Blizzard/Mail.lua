@@ -161,9 +161,11 @@ S:AddCallback("Skin_Mail", function()
 
 	S:HandleEditBox(SendMailNameEditBox)
 	S:HandleEditBox(SendMailSubjectEditBox)
-	S:HandleEditBox(SendMailMoneyGold)
-	S:HandleEditBox(SendMailMoneySilver)
-	S:HandleEditBox(SendMailMoneyCopper)
+	if SendMailMoneyGold then
+		S:HandleEditBox(SendMailMoneyGold)
+		S:HandleEditBox(SendMailMoneySilver)
+		S:HandleEditBox(SendMailMoneyCopper)
+	end
 
 	S:HandleButton(SendMailMailButton)
 	S:HandleButton(SendMailCancelButton)
@@ -192,12 +194,15 @@ S:AddCallback("Skin_Mail", function()
 	SendMailSubjectEditBox:Size(247, 18)
 	SendMailSubjectEditBox:Point("TOPLEFT", SendMailNameEditBox, "BOTTOMLEFT", 0, -5)
 
-	if SendMailCostMoneyFrame then SendMailCostMoneyFrame:Point("TOPRIGHT", -27, -45)
+	if SendMailCostMoneyFrame then
+		SendMailCostMoneyFrame:Point("TOPRIGHT", -27, -45)
+	end
 
-	SendMailMoneyText:Point("TOPLEFT", 0, 3)
-	SendMailMoney:Point("TOPLEFT", SendMailMoneyText, "BOTTOMLEFT", 2, -3)
-
-	SendMailMoneyFrame:Point("BOTTOMRIGHT", SendMailFrame, "BOTTOMLEFT", 164, 88)
+	if SendMailMoneyFrame then
+		SendMailMoneyText:Point("TOPLEFT", 0, 3)
+		SendMailMoney:Point("TOPLEFT", SendMailMoneyText, "BOTTOMLEFT", 2, -3)
+		SendMailMoneyFrame:Point("BOTTOMRIGHT", SendMailFrame, "BOTTOMLEFT", 164, 88)
+	end
 	SendMailMailButton:Point("RIGHT", SendMailCancelButton, "LEFT", -3, 0)
 
 	SendMailCancelButton:Point("BOTTOMRIGHT", -40, 84)

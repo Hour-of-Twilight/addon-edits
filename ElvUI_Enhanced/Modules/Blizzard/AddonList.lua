@@ -401,7 +401,9 @@ function mod:AddonList()
 	end)
 
 	GameMenuButtonLogout:SetScript("OnShow", function(self)
-		self:Point("TOP", buttonAddons, "BOTTOM", 0, -16)
+		if not gamemenuSettings then
+			self:Point("TOP", buttonAddons, "BOTTOM", 0, -16)
+		end
 
 		if not StaticPopup_Visible("CAMP") and not StaticPopup_Visible("QUIT") then
 			self:Enable()
@@ -410,7 +412,9 @@ function mod:AddonList()
 		end
 	end)
 
-	if GetLocale() == "koKR" then
+	if gamemenuSettings then
+		return
+	elseif GetLocale() == "koKR" then
 		if IsMacClient() then
 			GameMenuFrame:Height(308)
 		else

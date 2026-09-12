@@ -20,8 +20,10 @@ S:AddCallbackForAddon("Blizzard_BarbershopUI", "Skin_Blizzard_BarbershopUI", fun
 		S:HandleNextPrevButton(_G["BarberShopFrameSelector"..i.."Next"])
 	end
 
-	BarberShopFrameMoneyFrame:StripTextures()
-	BarberShopFrameMoneyFrame:CreateBackdrop()
+	if BarberShopFrameMoneyFrame then
+		BarberShopFrameMoneyFrame:StripTextures()
+		BarberShopFrameMoneyFrame:CreateBackdrop()
+	end
 
 	S:HandleButton(BarberShopFrameOkayButton)
 	S:HandleButton(BarberShopFrameCancelButton)

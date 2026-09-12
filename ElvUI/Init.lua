@@ -189,7 +189,41 @@ function AddOn:OnInitialize()
 		GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() - self:GetHeight())
 	end)
 
+	local function LayoutSettingsGameMenu()
+		if not gamemenuSettings then return end
+
+		local menuOrder = {
+			gamemenuSettings,
+			GameMenuButton,
+			ElvUI_AddonListButton,
+			GameMenuButtonMacros,
+			GameMenuButtonLogout,
+			GameMenuButtonQuit,
+			GameMenuButtonContinue
+		}
+
+		local offset = -34
+		for i = 1, #menuOrder do
+			local button = menuOrder[i]
+			if button then
+				if button == GameMenuButtonContinue then
+					offset = offset - 15
+				end
+
+				button:ClearAllPoints()
+				button:Point("TOP", GameMenuFrame, "TOP", 0, offset)
+				offset = offset - (button:GetHeight() + 2)
+			end
+		end
+
+		GameMenuFrame:SetHeight(-offset + 14)
+
+		return true
+	end
+
 	GameMenuFrame:HookScript("OnShow", function()
+		if LayoutSettingsGameMenu() then return end
+
 		if not GameMenuFrame.isElvUI then
 			GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + GameMenuButtonLogout:GetHeight() + 1)
 			GameMenuFrame.isElvUI = true
@@ -202,6 +236,8 @@ function AddOn:OnInitialize()
 			GameMenuButtonLogout:Point("TOPLEFT", GameMenuFrame[AddOnName], "BOTTOMLEFT", 0, -16)
 		end
 	end)
+
+	GameMenuButtonLogout:HookScript("OnShow", LayoutSettingsGameMenu)
 
 	self.loadedtime = GetTime()
 end
