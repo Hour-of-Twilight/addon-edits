@@ -42,7 +42,7 @@ A collection of World of Warcraft addons patched to work with the **Hour of Twil
 
 ## Installation
 
-1. Clone or download this repository.
+1. Clone or download this repository or automate this through our launcher.
 2. Copy the addon folders you want into your WoW `Interface/AddOns/` directory:
    ```
    World of Warcraft/Interface/AddOns/
