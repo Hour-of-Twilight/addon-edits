@@ -28,12 +28,21 @@ local function throttledUpdater_OnUpdate(self, elapsed)
 	self:Hide()
 end
 
+local function sizeChangeNotifier_OnUpdate(self)
+	self:Hide()
+	local p = self:GetParent()
+	p:SendMessage('ITEM_FRAME_SIZE_CHANGE', p:GetFrameID())
+end
+
 function ItemFrame:New(frameID, parent)
 	local f = self:Bind(CreateFrame('Frame', nil, parent))
 
 	f.itemSlots = {}
 	f.throttledUpdater = CreateFrame('Frame', nil, f)
 	f.throttledUpdater:SetScript('OnUpdate', throttledUpdater_OnUpdate)
+	f.sizeChangeNotifier = CreateFrame('Frame', nil, f)
+	f.sizeChangeNotifier:Hide()
+	f.sizeChangeNotifier:SetScript('OnUpdate', sizeChangeNotifier_OnUpdate)
 	f:SetFrameID(frameID)
 	f:SetScript('OnSizeChanged', f.OnSizeChanged)
 	f:SetScript('OnEvent', f.OnEvent)
@@ -175,8 +184,13 @@ function ItemFrame:OnHide()
 	self:UpdateEvents()
 end
 
+-- Defer the parent's relayout to the next frame. OnSizeChanged runs inside the client's
+-- layout pass, and the parent's Layout moves this frame again (it resizes the window and
+-- reads its position back) while a slot is still part way through anchoring to it. That
+-- slot keeps a half-old, half-new rect (missing/stretched icon, can't be moused over)
+-- until the bag is reopened.
 function ItemFrame:OnSizeChanged()
-	self:SendMessage('ITEM_FRAME_SIZE_CHANGE', self:GetFrameID())
+	self.sizeChangeNotifier:Show()
 end
 
 
