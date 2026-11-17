@@ -36,6 +36,7 @@ A collection of World of Warcraft addons patched to work with the **Hour of Twil
 
 ### Other
 
+- **Bejeweled** — Bejeweled minigame
 - **CompactRaidFrame** — Compact raid unit frames
 - **HoT_UIBridge** — Custom bridge addon for Hour of Twilight server-specific APIs
 - **Peggle** — Peggle minigame

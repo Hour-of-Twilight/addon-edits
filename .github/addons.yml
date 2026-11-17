@@ -75,3 +75,11 @@ addons:
     mainFolder: Peggle
     folders:
       - Peggle
+
+  - id: bejeweled
+    name: Bejeweled
+    summary: The Bejeweled minigame, playable in game.
+    website: https://github.com/Hour-of-Twilight/addon-edits
+    mainFolder: Bejeweled
+    folders:
+      - Bejeweled
