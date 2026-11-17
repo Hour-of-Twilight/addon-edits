@@ -1,0 +1,32 @@
+local L = LibStub("AceLocale-3.0"):NewLocale("Details_TimeLine", "koKR")
+if not L then return end
+
+L["STRING_DATAINVALID"] = "    :   ."
+L["STRING_ELAPSED"] = " "
+L["STRING_INCOMBAT"] = "    ."
+L["STRING_NODATA"] = "   ."
+L["STRING_OPTIONS"] = ""
+L["STRING_OPTIONS_BGCOLOR"] = " "
+L["STRING_OPTIONS_BGCOLOR_DESC"] = "  "
+L["STRING_OPTIONS_MAXSEGMENTS"] = " "
+L["STRING_OPTIONS_MAXSEGMENTS_DESC"] = "  "
+L["STRING_OPTIONS_TITLE"] = " "
+L["STRING_OPTIONS_WINDOWCOLOR"] = "  "
+L["STRING_OPTIONS_WINDOWCOLOR_DESC"] = "  "
+L["STRING_PLUGIN_DESC"] = [=[           .
+                    .]=]
+L["STRING_PLUGIN_NAME"] = ""
+L["STRING_RESET"] = ""
+L["STRING_SEARCH"] = ":"
+L["STRING_SECONDS"] = ""
+L["STRING_SELECT_SEGMENT"] = ":"
+L["STRING_SOURCE"] = ""
+L["STRING_SPELLICONS"] = " "
+L["STRING_TARGET"] = ""
+L["STRING_TIME"] = ""
+L["STRING_TOOLTIP"] = "  "
+L["STRING_TYPE"] = ":"
+L["STRING_TYPE_COOLDOWN"] = ""
+L["STRING_TYPE_DEBUFF"] = " "
+L["STRING_UNKNOWN"] = "  "
+
