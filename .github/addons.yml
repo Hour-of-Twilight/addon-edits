@@ -51,3 +51,27 @@ addons:
     mainFolder: pw_unitframes
     folders:
       - pw_unitframes
+
+  - id: details
+    name: Details!
+    summary: Damage, healing and threat meter with encounter plugins.
+    website: https://github.com/Hour-of-Twilight/addon-edits
+    mainFolder: Details
+    folders:
+      - Details
+      - Details_3DModelsPaths
+      - Details_ChartViewer
+      - Details_DataStorage
+      - Details_DeathGraphs
+      - Details_EncounterDetails
+      - Details_SunderCount
+      - Details_TimeLine
+      - Details_TinyThreat
+
+  - id: peggle
+    name: Peggle
+    summary: The Peggle minigame, playable in game.
+    website: https://github.com/Hour-of-Twilight/addon-edits
+    mainFolder: Peggle
+    folders:
+      - Peggle
